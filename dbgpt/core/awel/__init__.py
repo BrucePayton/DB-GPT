@@ -190,6 +190,7 @@ def setup_dev_environment(
         import uvicorn
 
         # Should keep running
+        #uvicorn.run(app, host=host, port=port, is_open_jupyter=True)
         uvicorn.run(app, host=host, port=port)
 
 

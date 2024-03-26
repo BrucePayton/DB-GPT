@@ -221,8 +221,9 @@ class BranchOperator(BaseOperator, Generic[IN, OUT]):
         Returns:
             TaskOutput[OUT]: The task output after this node has been run.
         """
-        curr_task_ctx: TaskContext[OUT] = dag_ctx.current_task_context
+        curr_task_ctx: TaskContext[OUT] = dag_ctx.current_task_context # get the current task object 
         task_input = curr_task_ctx.task_input
+
         if task_input.check_stream():
             raise ValueError("BranchDAGNode expects no stream data")
         if not task_input.check_single_parent():
@@ -241,7 +242,8 @@ class BranchOperator(BaseOperator, Generic[IN, OUT]):
             )
 
         branch_input_ctxs: List[InputContext] = await asyncio.gather(*branch_func_tasks)
-        parent_output = task_input.parent_outputs[0].task_output
+        parent_output = task_input.parent_outputs[0].task_output # set parent node
+
         curr_task_ctx.set_task_output(parent_output)
         skip_node_names = []
         for i, ctx in enumerate(branch_input_ctxs):
@@ -254,6 +256,10 @@ class BranchOperator(BaseOperator, Generic[IN, OUT]):
             if ctx.parent_outputs[0].task_output.is_none:
                 logger.info(f"Skip node name {node_name}")
                 skip_node_names.append(node_name)
+
+            if len(skip_node_names) == len(branch_func_tasks):
+                raise ValueError("BranchDAGNode can't handle situations outside of the branch task function.")
+            
         curr_task_ctx.update_metadata("skip_node_names", skip_node_names)
         return parent_output
 

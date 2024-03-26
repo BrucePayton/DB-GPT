@@ -1006,7 +1006,7 @@ class RequestBodyToDictOperator(MapOperator[CommonLLMHttpRequestBody, Dict[str, 
 
 
 class UserInputParsedOperator(MapOperator[CommonLLMHttpRequestBody, Dict[str, Any]]):
-    """User input parsed operator."""
+    """+."""
 
     metadata = ViewMetadata(
         label="User Input Parsed Operator",
