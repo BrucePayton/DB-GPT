@@ -1,0 +1,2 @@
+include dbgpts.toml
+include test_try/definition/*.json

@@ -74,7 +74,7 @@ class ChromaStore(VectorStoreBase):
             anonymized_telemetry=False,
         )
         client = PersistentClient(path=self.persist_dir, settings=chroma_settings)
-
+        
         collection_metadata = chroma_vector_config.get("collection_metadata") or {
             "hnsw:space": "cosine"
         }

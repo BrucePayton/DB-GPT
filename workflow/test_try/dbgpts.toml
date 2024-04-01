@@ -1,0 +1,12 @@
+[flow]
+label = "a test case for command try"
+name = "test_try"
+version = "0.1.0"
+description = "this app is a for test"
+authors = []
+definition_type = "json"
+
+[python_config]
+
+[json_config]
+file_path = "definition/flow_definition.json"

@@ -28,6 +28,7 @@ class TextSplitter(ABC):
         length_function: Callable[[str], int] = len,
         filters=None,
         separator: str = "",
+        enable_merge: bool = None
     ):
         """Create a new TextSplitter."""
         if filters is None:
@@ -42,7 +43,9 @@ class TextSplitter(ABC):
         self._length_function = length_function
         self._filter = filters
         self._separator = separator
+        self._enable_merge = enable_merge
 
+        
     @abstractmethod
     def split_text(self, text: str, **kwargs) -> List[str]:
         """Split text into multiple components."""

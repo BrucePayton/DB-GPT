@@ -1,0 +1,2034 @@
+{
+    "nodes": [
+        {
+            "width": 288,
+            "height": 472,
+            "id": "operator_embedding_retriever_operator___$$___rag___$$___v1_0",
+            "position": {
+                "x": 868.8557106501584,
+                "y": 1274.8221965478135,
+                "zoom": 0.0
+            },
+            "type": "customNode",
+            "data": {
+                "label": "Embedding Retriever Operator",
+                "name": "embedding_retriever_operator",
+                "description": "Retrieve candidates from vector store.",
+                "category": "rag",
+                "category_label": "RAG",
+                "flow_type": "operator",
+                "icon": null,
+                "documentation_url": null,
+                "id": "operator_embedding_retriever_operator___$$___rag___$$___v1_0",
+                "tags": null,
+                "parameters": [
+                    {
+                        "type_name": "VectorStoreConnector",
+                        "type_cls": "dbgpt.storage.vector_store.connector.VectorStoreConnector",
+                        "label": "Vector Store Connector",
+                        "name": "vector_store_connector",
+                        "is_list": false,
+                        "category": "resource",
+                        "resource_type": "instance",
+                        "optional": false,
+                        "default": null,
+                        "placeholder": null,
+                        "description": "The vector store connector.",
+                        "options": null,
+                        "value": "resource_dbgpt.storage.vector_store.connector.VectorStoreConnector_0"
+                    },
+                    {
+                        "type_name": "int",
+                        "type_cls": "builtins.int",
+                        "label": "Top K",
+                        "name": "top_k",
+                        "is_list": false,
+                        "category": "common",
+                        "resource_type": "instance",
+                        "optional": false,
+                        "default": null,
+                        "placeholder": null,
+                        "description": "The number of candidates.",
+                        "options": null,
+                        "value": 3
+                    },
+                    {
+                        "type_name": "float",
+                        "type_cls": "builtins.float",
+                        "label": "Score Threshold",
+                        "name": "score_threshold",
+                        "is_list": false,
+                        "category": "common",
+                        "resource_type": "instance",
+                        "optional": true,
+                        "default": "0.3",
+                        "placeholder": null,
+                        "description": "The score threshold, if score of candidate is less than it, it will be filtered.",
+                        "options": null,
+                        "value": null
+                    },
+                    {
+                        "type_name": "QueryRewrite",
+                        "type_cls": "dbgpt.rag.retriever.rewrite.QueryRewrite",
+                        "label": "Query Rewrite",
+                        "name": "query_rewrite",
+                        "is_list": false,
+                        "category": "resource",
+                        "resource_type": "instance",
+                        "optional": true,
+                        "default": null,
+                        "placeholder": null,
+                        "description": "The query rewrite resource.",
+                        "options": null,
+                        "value": null
+                    },
+                    {
+                        "type_name": "Ranker",
+                        "type_cls": "dbgpt.rag.retriever.rerank.Ranker",
+                        "label": "Rerank",
+                        "name": "rerank",
+                        "is_list": false,
+                        "category": "resource",
+                        "resource_type": "instance",
+                        "optional": true,
+                        "default": null,
+                        "placeholder": null,
+                        "description": "The rerank.",
+                        "options": null,
+                        "value": null
+                    }
+                ],
+                "operator_type": "map",
+                "inputs": [
+                    {
+                        "type_name": "str",
+                        "type_cls": "builtins.str",
+                        "label": "Query",
+                        "name": "query",
+                        "description": "The query to retrieve.",
+                        "is_list": false
+                    }
+                ],
+                "outputs": [
+                    {
+                        "type_name": "Chunk",
+                        "type_cls": "dbgpt.core.interface.knowledge.Chunk",
+                        "label": "Candidates",
+                        "name": "candidates",
+                        "description": "The retrieved candidates.",
+                        "is_list": true
+                    }
+                ],
+                "version": "v1",
+                "type_name": "EmbeddingRetrieverOperator",
+                "type_cls": "dbgpt.rag.operators.embedding.EmbeddingRetrieverOperator"
+            },
+            "position_absolute": {
+                "x": 868.8557106501584,
+                "y": 1274.8221965478135,
+                "zoom": 0.0
+            }
+        },
+        {
+            "width": 288,
+            "height": 255,
+            "id": "resource_dbgpt.storage.vector_store.connector.VectorStoreConnector_0",
+            "position": {
+                "x": 211.36228632792518,
+                "y": 1489.892377653417,
+                "zoom": 0.0
+            },
+            "type": "customNode",
+            "data": {
+                "type_name": "VectorStoreConnector",
+                "type_cls": "dbgpt.storage.vector_store.connector.VectorStoreConnector",
+                "label": "Vector Store Connector",
+                "name": "vector_store_connector",
+                "description": "The connector for vector store.\n\n    VectorStoreConnector, can connect different vector db provided load document api_v1\n    and similar search api_v1.\n\n    1.load_document:knowledge document source into vector store.(Chroma, Milvus,\n    Weaviate).\n    2.similar_search: similarity search from vector_store.\n    3.similar_search_with_scores: similarity search with similarity score from\n    vector_store\n\n    code example:\n    >>> from dbgpt.storage.vector_store.connector import VectorStoreConnector\n\n    >>> vector_store_config = VectorStoreConfig\n    >>> vector_store_connector = VectorStoreConnector(vector_store_type=\"Chroma\")\n    ",
+                "category": "vector_store",
+                "category_label": "Vector Store",
+                "flow_type": "resource",
+                "icon": null,
+                "documentation_url": null,
+                "id": "resource_dbgpt.storage.vector_store.connector.VectorStoreConnector_0",
+                "tags": null,
+                "parameters": [
+                    {
+                        "type_name": "str",
+                        "type_cls": "builtins.str",
+                        "label": "Vector Store Type",
+                        "name": "vector_store_type",
+                        "is_list": false,
+                        "category": "common",
+                        "resource_type": "instance",
+                        "optional": false,
+                        "default": null,
+                        "placeholder": null,
+                        "description": "The type of vector store.",
+                        "options": [
+                            {
+                                "label": "Chroma",
+                                "name": "Chroma",
+                                "value": "Chroma"
+                            },
+                            {
+                                "label": "Milvus",
+                                "name": "Milvus",
+                                "value": "Milvus"
+                            },
+                            {
+                                "label": "Weaviate",
+                                "name": "Weaviate",
+                                "value": "Weaviate"
+                            },
+                            {
+                                "label": "PGVector",
+                                "name": "PGVector",
+                                "value": "PGVector"
+                            }
+                        ],
+                        "value": "Chroma"
+                    },
+                    {
+                        "type_name": "VectorStoreConfig",
+                        "type_cls": "dbgpt.storage.vector_store.base.VectorStoreConfig",
+                        "label": "Vector Store Implementation",
+                        "name": "vector_store_config",
+                        "is_list": false,
+                        "category": "resource",
+                        "resource_type": "instance",
+                        "optional": true,
+                        "default": null,
+                        "placeholder": null,
+                        "description": "The vector store implementation.",
+                        "options": null,
+                        "value": "resource_dbgpt.storage.vector_store.chroma_store.ChromaVectorConfig_0"
+                    }
+                ],
+                "resource_type": "instance",
+                "parent_cls": [
+                    "dbgpt.storage.vector_store.connector.VectorStoreConnector"
+                ]
+            },
+            "position_absolute": {
+                "x": 211.36228632792518,
+                "y": 1489.892377653417,
+                "zoom": 0.0
+            }
+        },
+        {
+            "width": 288,
+            "height": 594,
+            "id": "resource_dbgpt.storage.vector_store.chroma_store.ChromaVectorConfig_0",
+            "position": {
+                "x": -599.907815589616,
+                "y": 1343.6744083983986,
+                "zoom": 0.0
+            },
+            "type": "customNode",
+            "data": {
+                "type_name": "ChromaVectorConfig",
+                "type_cls": "dbgpt.storage.vector_store.chroma_store.ChromaVectorConfig",
+                "label": "Chroma Vector Store",
+                "name": "chroma_vector_store",
+                "description": "Chroma vector store.",
+                "category": "vector_store",
+                "category_label": "Vector Store",
+                "flow_type": "resource",
+                "icon": null,
+                "documentation_url": null,
+                "id": "resource_dbgpt.storage.vector_store.chroma_store.ChromaVectorConfig_0",
+                "tags": null,
+                "parameters": [
+                    {
+                        "type_name": "str",
+                        "type_cls": "builtins.str",
+                        "label": "Collection Name",
+                        "name": "name",
+                        "is_list": false,
+                        "category": "common",
+                        "resource_type": "instance",
+                        "optional": true,
+                        "default": "dbgpt_collection",
+                        "placeholder": null,
+                        "description": "The name of vector store, if not set, will use the default name.",
+                        "options": null,
+                        "value": "test_vstore"
+                    },
+                    {
+                        "type_name": "str",
+                        "type_cls": "builtins.str",
+                        "label": "User",
+                        "name": "user",
+                        "is_list": false,
+                        "category": "common",
+                        "resource_type": "instance",
+                        "optional": true,
+                        "default": null,
+                        "placeholder": null,
+                        "description": "The user of vector store, if not set, will use the default user.",
+                        "options": null,
+                        "value": null
+                    },
+                    {
+                        "type_name": "str",
+                        "type_cls": "builtins.str",
+                        "label": "Password",
+                        "name": "password",
+                        "is_list": false,
+                        "category": "common",
+                        "resource_type": "instance",
+                        "optional": true,
+                        "default": null,
+                        "placeholder": null,
+                        "description": "The password of vector store, if not set, will use the default password.",
+                        "options": null,
+                        "value": null
+                    },
+                    {
+                        "type_name": "Embeddings",
+                        "type_cls": "dbgpt.core.interface.embeddings.Embeddings",
+                        "label": "Embedding Function",
+                        "name": "embedding_fn",
+                        "is_list": false,
+                        "category": "resource",
+                        "resource_type": "instance",
+                        "optional": true,
+                        "default": null,
+                        "placeholder": null,
+                        "description": "The embedding function of vector store, if not set, will use the default embedding function.",
+                        "options": null,
+                        "value": "resource_dbgpt.rag.embedding.embedding_factory.DefaultEmbeddings_0"
+                    },
+                    {
+                        "type_name": "int",
+                        "type_cls": "builtins.int",
+                        "label": "Max Chunks Once Load",
+                        "name": "max_chunks_once_load",
+                        "is_list": false,
+                        "category": "common",
+                        "resource_type": "instance",
+                        "optional": true,
+                        "default": "10",
+                        "placeholder": null,
+                        "description": "The max number of chunks to load at once. If your document is large, you can set this value to a larger number to speed up the loading process. Default is 10.",
+                        "options": null,
+                        "value": null
+                    },
+                    {
+                        "type_name": "int",
+                        "type_cls": "builtins.int",
+                        "label": "Max Threads",
+                        "name": "max_threads",
+                        "is_list": false,
+                        "category": "common",
+                        "resource_type": "instance",
+                        "optional": true,
+                        "default": "1",
+                        "placeholder": null,
+                        "description": "The max number of threads to use. Default is 1. If you set this bigger than 1, please make sure your vector store is thread-safe.",
+                        "options": null,
+                        "value": null
+                    },
+                    {
+                        "type_name": "str",
+                        "type_cls": "builtins.str",
+                        "label": "Persist Path",
+                        "name": "persist_path",
+                        "is_list": false,
+                        "category": "common",
+                        "resource_type": "instance",
+                        "optional": true,
+                        "default": null,
+                        "placeholder": null,
+                        "description": "the persist path of vector store.",
+                        "options": null,
+                        "value": "/tmp/awel_rag_test_vector_store"
+                    }
+                ],
+                "resource_type": "instance",
+                "parent_cls": [
+                    "dbgpt.storage.vector_store.chroma_store.ChromaVectorConfig",
+                    "dbgpt.storage.vector_store.base.VectorStoreConfig",
+                    "pydantic.main.BaseModel",
+                    "pydantic.utils.Representation"
+                ]
+            },
+            "position_absolute": {
+                "x": -599.907815589616,
+                "y": 1343.6744083983986,
+                "zoom": 0.0
+            }
+        },
+        {
+            "width": 288,
+            "height": 116,
+            "id": "resource_dbgpt.rag.embedding.embedding_factory.DefaultEmbeddings_0",
+            "position": {
+                "x": -1107.3377818628887,
+                "y": 1090.8927814132173,
+                "zoom": 0.0
+            },
+            "type": "customNode",
+            "data": {
+                "type_name": "DefaultEmbeddings",
+                "type_cls": "dbgpt.rag.embedding.embedding_factory.DefaultEmbeddings",
+                "label": "Default Embeddings",
+                "name": "default_embeddings",
+                "description": "Default embeddings(using default embedding model of current system)",
+                "category": "embeddings",
+                "category_label": "Embeddings",
+                "flow_type": "resource",
+                "icon": null,
+                "documentation_url": null,
+                "id": "resource_dbgpt.rag.embedding.embedding_factory.DefaultEmbeddings_0",
+                "tags": null,
+                "parameters": [],
+                "resource_type": "instance",
+                "parent_cls": [
+                    "dbgpt.rag.embedding.embedding_factory.DefaultEmbeddings",
+                    "dbgpt.core.interface.embeddings.Embeddings"
+                ]
+            },
+            "position_absolute": {
+                "x": -1107.3377818628887,
+                "y": 1090.8927814132173,
+                "zoom": 0.0
+            }
+        },
+        {
+            "width": 288,
+            "height": 288,
+            "id": "operator_request_body_to_str__parsed_operator___$$___common___$$___v1_0",
+            "position": {
+                "x": -74.40764667485132,
+                "y": -220.35016821766868,
+                "zoom": 0.0
+            },
+            "type": "customNode",
+            "data": {
+                "label": "Request Body Parsed To String Operator",
+                "name": "request_body_to_str__parsed_operator",
+                "description": "User input parsed operator, parse the user input from request body and return as a string",
+                "category": "common",
+                "category_label": "Common",
+                "flow_type": "operator",
+                "icon": null,
+                "documentation_url": null,
+                "id": "operator_request_body_to_str__parsed_operator___$$___common___$$___v1_0",
+                "tags": null,
+                "parameters": [
+                    {
+                        "type_name": "str",
+                        "type_cls": "builtins.str",
+                        "label": "Key",
+                        "name": "key",
+                        "is_list": false,
+                        "category": "common",
+                        "resource_type": "instance",
+                        "optional": true,
+                        "default": "messages",
+                        "placeholder": null,
+                        "description": "The key of the dict, link 'user_input'",
+                        "options": null,
+                        "value": null
+                    }
+                ],
+                "operator_type": "map",
+                "inputs": [
+                    {
+                        "type_name": "CommonLLMHttpRequestBody",
+                        "type_cls": "dbgpt.core.awel.trigger.http_trigger.CommonLLMHttpRequestBody",
+                        "label": "Request Body",
+                        "name": "request_body",
+                        "description": "The request body of the API endpoint",
+                        "is_list": false
+                    }
+                ],
+                "outputs": [
+                    {
+                        "type_name": "str",
+                        "type_cls": "builtins.str",
+                        "label": "User Input String",
+                        "name": "user_input_str",
+                        "description": "The user input dict of the API endpoint",
+                        "is_list": false
+                    }
+                ],
+                "version": "v1",
+                "type_name": "RequestedParsedOperator",
+                "type_cls": "dbgpt.core.awel.trigger.http_trigger.RequestedParsedOperator"
+            },
+            "position_absolute": {
+                "x": -74.40764667485132,
+                "y": -220.35016821766868,
+                "zoom": 0.0
+            }
+        },
+        {
+            "width": 288,
+            "height": 497,
+            "id": "operator_common_llm_http_trigger___$$___trigger___$$___v1_0",
+            "position": {
+                "x": -784.3571913243588,
+                "y": -1013.5697825768184,
+                "zoom": 0.0
+            },
+            "type": "customNode",
+            "data": {
+                "label": "Common LLM Http Trigger",
+                "name": "common_llm_http_trigger",
+                "description": "Trigger your workflow by http request, and parse the request body as a common LLM http body",
+                "category": "trigger",
+                "category_label": "Trigger",
+                "flow_type": "operator",
+                "icon": null,
+                "documentation_url": null,
+                "id": "operator_common_llm_http_trigger___$$___trigger___$$___v1_0",
+                "tags": null,
+                "parameters": [
+                    {
+                        "type_name": "str",
+                        "type_cls": "builtins.str",
+                        "label": "API Endpoint",
+                        "name": "endpoint",
+                        "is_list": false,
+                        "category": "common",
+                        "resource_type": "instance",
+                        "optional": false,
+                        "default": null,
+                        "placeholder": null,
+                        "description": "The API endpoint",
+                        "options": null,
+                        "value": "/awe/flow/rag/save_url_to_vstore/test"
+                    },
+                    {
+                        "type_name": "str",
+                        "type_cls": "builtins.str",
+                        "label": "Http Methods",
+                        "name": "methods",
+                        "is_list": false,
+                        "category": "common",
+                        "resource_type": "instance",
+                        "optional": true,
+                        "default": "POST",
+                        "placeholder": null,
+                        "description": "The methods of the API endpoint",
+                        "options": [
+                            {
+                                "label": "HTTP Method PUT",
+                                "name": "http_put",
+                                "value": "PUT"
+                            },
+                            {
+                                "label": "HTTP Method POST",
+                                "name": "http_post",
+                                "value": "POST"
+                            }
+                        ],
+                        "value": null
+                    },
+                    {
+                        "type_name": "bool",
+                        "type_cls": "builtins.bool",
+                        "label": "Streaming Response",
+                        "name": "streaming_response",
+                        "is_list": false,
+                        "category": "common",
+                        "resource_type": "instance",
+                        "optional": true,
+                        "default": "False",
+                        "placeholder": null,
+                        "description": "Whether the response is streaming",
+                        "options": null,
+                        "value": null
+                    },
+                    {
+                        "type_name": "BaseHttpBody",
+                        "type_cls": "dbgpt.core.awel.trigger.http_trigger.BaseHttpBody",
+                        "label": "Http Response Body",
+                        "name": "http_response_body",
+                        "is_list": false,
+                        "category": "resource",
+                        "resource_type": "class",
+                        "optional": true,
+                        "default": null,
+                        "placeholder": null,
+                        "description": "The response body of the API endpoint",
+                        "options": null,
+                        "value": null
+                    },
+                    {
+                        "type_name": "str",
+                        "type_cls": "builtins.str",
+                        "label": "Response Media Type",
+                        "name": "response_media_type",
+                        "is_list": false,
+                        "category": "common",
+                        "resource_type": "instance",
+                        "optional": true,
+                        "default": null,
+                        "placeholder": null,
+                        "description": "The response media type",
+                        "options": null,
+                        "value": null
+                    },
+                    {
+                        "type_name": "int",
+                        "type_cls": "builtins.int",
+                        "label": "Http Status Code",
+                        "name": "status_code",
+                        "is_list": false,
+                        "category": "common",
+                        "resource_type": "instance",
+                        "optional": true,
+                        "default": "200",
+                        "placeholder": null,
+                        "description": "The http status code",
+                        "options": null,
+                        "value": null
+                    }
+                ],
+                "operator_type": "input",
+                "inputs": [],
+                "outputs": [
+                    {
+                        "type_name": "CommonLLMHttpRequestBody",
+                        "type_cls": "dbgpt.core.awel.trigger.http_trigger.CommonLLMHttpRequestBody",
+                        "label": "Request Body",
+                        "name": "request_body",
+                        "description": "The request body of the API endpoint, parse as a common LLM http body",
+                        "is_list": false
+                    }
+                ],
+                "version": "v1",
+                "type_name": "CommonLLMHttpTrigger",
+                "type_cls": "dbgpt.core.awel.trigger.http_trigger.CommonLLMHttpTrigger"
+            },
+            "position_absolute": {
+                "x": -784.3571913243588,
+                "y": -1013.5697825768184,
+                "zoom": 0.0
+            }
+        },
+        {
+            "width": 288,
+            "height": 288,
+            "id": "operator_chunks_to_string_operator___$$___rag___$$___v1_0",
+            "position": {
+                "x": 1358.6255148046896,
+                "y": 1258.9601040405394,
+                "zoom": 0.0
+            },
+            "type": "customNode",
+            "data": {
+                "label": "Chunks To String Operator",
+                "name": "chunks_to_string_operator",
+                "description": "Convert chunks to string.",
+                "category": "rag",
+                "category_label": "RAG",
+                "flow_type": "operator",
+                "icon": null,
+                "documentation_url": null,
+                "id": "operator_chunks_to_string_operator___$$___rag___$$___v1_0",
+                "tags": null,
+                "parameters": [
+                    {
+                        "type_name": "str",
+                        "type_cls": "builtins.str",
+                        "label": "Separator",
+                        "name": "separator",
+                        "is_list": false,
+                        "category": "common",
+                        "resource_type": "instance",
+                        "optional": true,
+                        "default": "\n",
+                        "placeholder": null,
+                        "description": "The separator between chunks.",
+                        "options": null,
+                        "value": "\\n"
+                    }
+                ],
+                "operator_type": "map",
+                "inputs": [
+                    {
+                        "type_name": "Chunk",
+                        "type_cls": "dbgpt.core.interface.knowledge.Chunk",
+                        "label": "Chunks",
+                        "name": "chunks",
+                        "description": "The input chunks.",
+                        "is_list": true
+                    }
+                ],
+                "outputs": [
+                    {
+                        "type_name": "str",
+                        "type_cls": "builtins.str",
+                        "label": "String",
+                        "name": "string",
+                        "description": "The output string.",
+                        "is_list": false
+                    }
+                ],
+                "version": "v1",
+                "type_name": "ChunksToStringOperator",
+                "type_cls": "dbgpt.rag.operators.knowledge.ChunksToStringOperator"
+            },
+            "position_absolute": {
+                "x": 1358.6255148046896,
+                "y": 1258.9601040405394,
+                "zoom": 0.0
+            }
+        },
+        {
+            "width": 288,
+            "height": 395,
+            "id": "operator_merge_string_to_dict_operator___$$___common___$$___v1_0",
+            "position": {
+                "x": 1835.1702795930553,
+                "y": 247.01053327748093,
+                "zoom": 0.0
+            },
+            "type": "customNode",
+            "data": {
+                "label": "Merge String to Dict Operator",
+                "name": "merge_string_to_dict_operator",
+                "description": "Merge two strings to a dict, the fist string which is the value from first upstream is the value of the key `first_key`, the second string which is the value from second upstream is the value of the key `second_key`.",
+                "category": "common",
+                "category_label": "Common",
+                "flow_type": "operator",
+                "icon": null,
+                "documentation_url": null,
+                "id": "operator_merge_string_to_dict_operator___$$___common___$$___v1_0",
+                "tags": null,
+                "parameters": [
+                    {
+                        "type_name": "str",
+                        "type_cls": "builtins.str",
+                        "label": "First Key",
+                        "name": "first_key",
+                        "is_list": false,
+                        "category": "common",
+                        "resource_type": "instance",
+                        "optional": true,
+                        "default": "user_input",
+                        "placeholder": null,
+                        "description": "The key for the first string, default is `user_input`.",
+                        "options": null,
+                        "value": null
+                    },
+                    {
+                        "type_name": "str",
+                        "type_cls": "builtins.str",
+                        "label": "Second Key",
+                        "name": "second_key",
+                        "is_list": false,
+                        "category": "common",
+                        "resource_type": "instance",
+                        "optional": true,
+                        "default": "context",
+                        "placeholder": null,
+                        "description": "The key for the second string, default is `context`.",
+                        "options": null,
+                        "value": null
+                    }
+                ],
+                "operator_type": "map",
+                "inputs": [
+                    {
+                        "type_name": "str",
+                        "type_cls": "builtins.str",
+                        "label": "First String",
+                        "name": "first",
+                        "description": "The first string from first upstream.",
+                        "is_list": false
+                    },
+                    {
+                        "type_name": "str",
+                        "type_cls": "builtins.str",
+                        "label": "Second String",
+                        "name": "second",
+                        "description": "The second string from second upstream.",
+                        "is_list": false
+                    }
+                ],
+                "outputs": [
+                    {
+                        "type_name": "dict",
+                        "type_cls": "builtins.dict",
+                        "label": "Output",
+                        "name": "output",
+                        "description": "The merged dict. example: {'user_input': 'first', 'context': 'second'}.",
+                        "is_list": false
+                    }
+                ],
+                "version": "v1",
+                "type_name": "MergeStringToDictOperator",
+                "type_cls": "dbgpt.core.operators.flow.dict_operator.MergeStringToDictOperator"
+            },
+            "position_absolute": {
+                "x": 1835.1702795930553,
+                "y": 247.01053327748093,
+                "zoom": 0.0
+            }
+        },
+        {
+            "width": 288,
+            "height": 352,
+            "id": "resource_dbgpt.core.interface.operators.prompt_operator.CommonChatPromptTemplate_0",
+            "position": {
+                "x": 1809.11118734407,
+                "y": 1273.3582642943309,
+                "zoom": 0.0
+            },
+            "type": "customNode",
+            "data": {
+                "type_name": "CommonChatPromptTemplate",
+                "type_cls": "dbgpt.core.interface.operators.prompt_operator.CommonChatPromptTemplate",
+                "label": "Common Chat Prompt Template",
+                "name": "common_chat_prompt_template",
+                "description": "The operator to build the prompt with static prompt.",
+                "category": "prompt",
+                "category_label": "Prompt",
+                "flow_type": "resource",
+                "icon": null,
+                "documentation_url": null,
+                "id": "resource_dbgpt.core.interface.operators.prompt_operator.CommonChatPromptTemplate_0",
+                "tags": null,
+                "parameters": [
+                    {
+                        "type_name": "str",
+                        "type_cls": "builtins.str",
+                        "label": "System Message",
+                        "name": "system_message",
+                        "is_list": false,
+                        "category": "common",
+                        "resource_type": "instance",
+                        "optional": true,
+                        "default": "You are a helpful AI Assistant.",
+                        "placeholder": null,
+                        "description": "The system message.",
+                        "options": null,
+                        "value": "Based on the known information below, provide users with professional and concise answers to their questions.  If the answer cannot be obtained from the provided content, please say:  \"The information provided in the knowledge base is not sufficient to answer this question.\".  It is forbidden to make up information randomly. When answering, it is best to summarize according to points 1.2.3.           known information:            {context}           question:           {user_input}"
+                    },
+                    {
+                        "type_name": "str",
+                        "type_cls": "builtins.str",
+                        "label": "Message placeholder",
+                        "name": "message_placeholder",
+                        "is_list": false,
+                        "category": "common",
+                        "resource_type": "instance",
+                        "optional": true,
+                        "default": "chat_history",
+                        "placeholder": null,
+                        "description": "The chat history message placeholder.",
+                        "options": null,
+                        "value": null
+                    },
+                    {
+                        "type_name": "str",
+                        "type_cls": "builtins.str",
+                        "label": "Human Message",
+                        "name": "human_message",
+                        "is_list": false,
+                        "category": "common",
+                        "resource_type": "instance",
+                        "optional": true,
+                        "default": "{user_input}",
+                        "placeholder": "{user_input}",
+                        "description": "The human message.",
+                        "options": null,
+                        "value": null
+                    }
+                ],
+                "resource_type": "instance",
+                "parent_cls": [
+                    "dbgpt.core.interface.operators.prompt_operator.CommonChatPromptTemplate",
+                    "dbgpt.core.interface.prompt.ChatPromptTemplate",
+                    "dbgpt.core.interface.prompt.BasePromptTemplate",
+                    "pydantic.main.BaseModel",
+                    "pydantic.utils.Representation"
+                ]
+            },
+            "position_absolute": {
+                "x": 1809.11118734407,
+                "y": 1273.3582642943309,
+                "zoom": 0.0
+            }
+        },
+        {
+            "width": 288,
+            "height": 227,
+            "id": "operator_merged_request_builder_operator___$$___common___$$___v1_0",
+            "position": {
+                "x": 2944.916043688886,
+                "y": -27.787783878488028,
+                "zoom": 0.0
+            },
+            "type": "customNode",
+            "data": {
+                "label": "Merge Model Request Messages",
+                "name": "merged_request_builder_operator",
+                "description": "Merge the model request from the input value.",
+                "category": "common",
+                "category_label": "Common",
+                "flow_type": "operator",
+                "icon": null,
+                "documentation_url": null,
+                "id": "operator_merged_request_builder_operator___$$___common___$$___v1_0",
+                "tags": null,
+                "parameters": [],
+                "operator_type": "map",
+                "inputs": [
+                    {
+                        "type_name": "ModelRequest",
+                        "type_cls": "dbgpt.core.interface.llm.ModelRequest",
+                        "label": "Model Request",
+                        "name": "model_request",
+                        "description": "The model request of upstream.",
+                        "is_list": false
+                    },
+                    {
+                        "type_name": "ModelMessage",
+                        "type_cls": "dbgpt.core.interface.message.ModelMessage",
+                        "label": "Model messages",
+                        "name": "messages",
+                        "description": "The model messages of upstream.",
+                        "is_list": true
+                    }
+                ],
+                "outputs": [
+                    {
+                        "type_name": "ModelRequest",
+                        "type_cls": "dbgpt.core.interface.llm.ModelRequest",
+                        "label": "Model Request",
+                        "name": "output_value",
+                        "description": "The output value of the operator.",
+                        "is_list": false
+                    }
+                ],
+                "version": "v1",
+                "type_name": "MergedRequestBuilderOperator",
+                "type_cls": "dbgpt.core.interface.operators.llm_operator.MergedRequestBuilderOperator"
+            },
+            "position_absolute": {
+                "x": 2944.916043688886,
+                "y": -27.787783878488028,
+                "zoom": 0.0
+            }
+        },
+        {
+            "width": 288,
+            "height": 492,
+            "id": "operator_request_builder_operator___$$___common___$$___v1_0",
+            "position": {
+                "x": 1411.2383173373976,
+                "y": -550.3899072897852,
+                "zoom": 0.0
+            },
+            "type": "customNode",
+            "data": {
+                "label": "Build Model Request",
+                "name": "request_builder_operator",
+                "description": "Build the model request from the http request body.",
+                "category": "common",
+                "category_label": "Common",
+                "flow_type": "operator",
+                "icon": null,
+                "documentation_url": null,
+                "id": "operator_request_builder_operator___$$___common___$$___v1_0",
+                "tags": null,
+                "parameters": [
+                    {
+                        "type_name": "str",
+                        "type_cls": "builtins.str",
+                        "label": "Default Model Name",
+                        "name": "model",
+                        "is_list": false,
+                        "category": "common",
+                        "resource_type": "instance",
+                        "optional": true,
+                        "default": null,
+                        "placeholder": null,
+                        "description": "The model name of the model request.",
+                        "options": null,
+                        "value": null
+                    },
+                    {
+                        "type_name": "float",
+                        "type_cls": "builtins.float",
+                        "label": "Temperature",
+                        "name": "temperature",
+                        "is_list": false,
+                        "category": "common",
+                        "resource_type": "instance",
+                        "optional": true,
+                        "default": null,
+                        "placeholder": null,
+                        "description": "The temperature of the model request.",
+                        "options": null,
+                        "value": null
+                    },
+                    {
+                        "type_name": "int",
+                        "type_cls": "builtins.int",
+                        "label": "Max New Tokens",
+                        "name": "max_new_tokens",
+                        "is_list": false,
+                        "category": "common",
+                        "resource_type": "instance",
+                        "optional": true,
+                        "default": null,
+                        "placeholder": null,
+                        "description": "The max new tokens of the model request.",
+                        "options": null,
+                        "value": null
+                    },
+                    {
+                        "type_name": "int",
+                        "type_cls": "builtins.int",
+                        "label": "Context Length",
+                        "name": "context_len",
+                        "is_list": false,
+                        "category": "common",
+                        "resource_type": "instance",
+                        "optional": true,
+                        "default": null,
+                        "placeholder": null,
+                        "description": "The context length of the model request.",
+                        "options": null,
+                        "value": null
+                    }
+                ],
+                "operator_type": "map",
+                "inputs": [
+                    {
+                        "type_name": "CommonLLMHttpRequestBody",
+                        "type_cls": "dbgpt.core.awel.trigger.http_trigger.CommonLLMHttpRequestBody",
+                        "label": "Request Body",
+                        "name": "input_value",
+                        "description": "The input value of the operator.",
+                        "is_list": false
+                    }
+                ],
+                "outputs": [
+                    {
+                        "type_name": "ModelRequest",
+                        "type_cls": "dbgpt.core.interface.llm.ModelRequest",
+                        "label": "Model Request",
+                        "name": "output_value",
+                        "description": "The output value of the operator.",
+                        "is_list": false
+                    }
+                ],
+                "version": "v1",
+                "type_name": "RequestBuilderOperator",
+                "type_cls": "dbgpt.core.interface.operators.llm_operator.RequestBuilderOperator"
+            },
+            "position_absolute": {
+                "x": 1411.2383173373976,
+                "y": -550.3899072897852,
+                "zoom": 0.0
+            }
+        },
+        {
+            "width": 288,
+            "height": 186,
+            "id": "resource_dbgpt.model.cluster.client.DefaultLLMClient_0",
+            "position": {
+                "x": 2996.6620907656747,
+                "y": 462.28070076070435,
+                "zoom": 0.0
+            },
+            "type": "customNode",
+            "data": {
+                "type_name": "DefaultLLMClient",
+                "type_cls": "dbgpt.model.cluster.client.DefaultLLMClient",
+                "label": "Default LLM Client",
+                "name": "default_llm_client",
+                "description": "Default LLM client(Connect to your DB-GPT model serving)",
+                "category": "llm_client",
+                "category_label": "LLM Client",
+                "flow_type": "resource",
+                "icon": null,
+                "documentation_url": null,
+                "id": "resource_dbgpt.model.cluster.client.DefaultLLMClient_0",
+                "tags": null,
+                "parameters": [
+                    {
+                        "type_name": "bool",
+                        "type_cls": "builtins.bool",
+                        "label": "Auto Convert Message",
+                        "name": "auto_convert_message",
+                        "is_list": false,
+                        "category": "common",
+                        "resource_type": "instance",
+                        "optional": true,
+                        "default": "False",
+                        "placeholder": null,
+                        "description": "Whether to auto convert the messages that are not supported by the LLM to a compatible format",
+                        "options": null,
+                        "value": null
+                    }
+                ],
+                "resource_type": "instance",
+                "parent_cls": [
+                    "dbgpt.model.cluster.client.DefaultLLMClient",
+                    "dbgpt.core.interface.llm.LLMClient"
+                ]
+            },
+            "position_absolute": {
+                "x": 2996.6620907656747,
+                "y": 462.28070076070435,
+                "zoom": 0.0
+            }
+        },
+        {
+            "width": 288,
+            "height": 258,
+            "id": "operator_streaming_llm_operator___$$___llm___$$___v1_0",
+            "position": {
+                "x": 3528.5334281937066,
+                "y": 136.30358621541538,
+                "zoom": 0.0
+            },
+            "type": "customNode",
+            "data": {
+                "label": "Streaming LLM Operator",
+                "name": "streaming_llm_operator",
+                "description": "The streaming LLM operator.",
+                "category": "llm",
+                "category_label": "LLM",
+                "flow_type": "operator",
+                "icon": null,
+                "documentation_url": null,
+                "id": "operator_streaming_llm_operator___$$___llm___$$___v1_0",
+                "tags": null,
+                "parameters": [
+                    {
+                        "type_name": "LLMClient",
+                        "type_cls": "dbgpt.core.interface.llm.LLMClient",
+                        "label": "LLM Client",
+                        "name": "llm_client",
+                        "is_list": false,
+                        "category": "resource",
+                        "resource_type": "instance",
+                        "optional": true,
+                        "default": null,
+                        "placeholder": null,
+                        "description": "The LLM Client.",
+                        "options": null,
+                        "value": "resource_dbgpt.model.cluster.client.DefaultLLMClient_0"
+                    }
+                ],
+                "operator_type": "streamify",
+                "inputs": [
+                    {
+                        "type_name": "ModelRequest",
+                        "type_cls": "dbgpt.core.interface.llm.ModelRequest",
+                        "label": "Model Request",
+                        "name": "model_request",
+                        "description": "The model request.",
+                        "is_list": false
+                    }
+                ],
+                "outputs": [
+                    {
+                        "type_name": "ModelOutput",
+                        "type_cls": "dbgpt.core.interface.llm.ModelOutput",
+                        "label": "Model Output",
+                        "name": "model_output",
+                        "description": "The model output.",
+                        "is_list": true
+                    }
+                ],
+                "version": "v1",
+                "type_name": "StreamingLLMOperator",
+                "type_cls": "dbgpt.model.operators.llm_operator.StreamingLLMOperator"
+            },
+            "position_absolute": {
+                "x": 3528.5334281937066,
+                "y": 136.30358621541538,
+                "zoom": 0.0
+            }
+        },
+        {
+            "width": 288,
+            "height": 188,
+            "id": "operator_openai_streaming_output_operator___$$___output_parser___$$___v1_0",
+            "position": {
+                "x": 4092.0746246501526,
+                "y": 472.2608379490657,
+                "zoom": 0.0
+            },
+            "type": "customNode",
+            "data": {
+                "label": "OpenAI Streaming Output Operator",
+                "name": "openai_streaming_output_operator",
+                "description": "The OpenAI streaming LLM operator.",
+                "category": "output_parser",
+                "category_label": "Output Parser",
+                "flow_type": "operator",
+                "icon": null,
+                "documentation_url": null,
+                "id": "operator_openai_streaming_output_operator___$$___output_parser___$$___v1_0",
+                "tags": null,
+                "parameters": [],
+                "operator_type": "transform_stream",
+                "inputs": [
+                    {
+                        "type_name": "ModelOutput",
+                        "type_cls": "dbgpt.core.interface.llm.ModelOutput",
+                        "label": "Upstream Model Output",
+                        "name": "model_output",
+                        "description": "The model output of upstream.",
+                        "is_list": true
+                    }
+                ],
+                "outputs": [
+                    {
+                        "type_name": "str",
+                        "type_cls": "builtins.str",
+                        "label": "Model Output",
+                        "name": "model_output",
+                        "description": "The model output after transform to openai stream format",
+                        "is_list": true
+                    }
+                ],
+                "version": "v1",
+                "type_name": "OpenAIStreamingOutputOperator",
+                "type_cls": "dbgpt.model.utils.chatgpt_utils.OpenAIStreamingOutputOperator"
+            },
+            "position_absolute": {
+                "x": 4092.0746246501526,
+                "y": 472.2608379490657,
+                "zoom": 0.0
+            }
+        },
+        {
+            "width": 288,
+            "height": 356,
+            "id": "operator_knowledge_operator___$$___rag___$$___v1_0",
+            "position": {
+                "x": 586.1229236298417,
+                "y": 177.95954719156992,
+                "zoom": 0.0
+            },
+            "type": "customNode",
+            "data": {
+                "label": "Knowledge Operator",
+                "name": "knowledge_operator",
+                "description": "The knowledge operator, which can create knowledge from datasource.",
+                "category": "rag",
+                "category_label": "RAG",
+                "flow_type": "operator",
+                "icon": null,
+                "documentation_url": "https://github.com/openai/openai-python",
+                "id": "operator_knowledge_operator___$$___rag___$$___v1_0",
+                "tags": null,
+                "parameters": [
+                    {
+                        "type_name": "str",
+                        "type_cls": "builtins.str",
+                        "label": "Default datasource",
+                        "name": "datasource",
+                        "is_list": false,
+                        "category": "common",
+                        "resource_type": "instance",
+                        "optional": true,
+                        "default": null,
+                        "placeholder": null,
+                        "description": "Default datasource.",
+                        "options": null,
+                        "value": null
+                    },
+                    {
+                        "type_name": "str",
+                        "type_cls": "builtins.str",
+                        "label": "Knowledge type",
+                        "name": "knowledge_type",
+                        "is_list": false,
+                        "category": "common",
+                        "resource_type": "instance",
+                        "optional": true,
+                        "default": "DOCUMENT",
+                        "placeholder": null,
+                        "description": "Knowledge type.",
+                        "options": [
+                            {
+                                "label": "DOCUMENT",
+                                "name": "DOCUMENT",
+                                "value": "DOCUMENT"
+                            },
+                            {
+                                "label": "URL",
+                                "name": "URL",
+                                "value": "URL"
+                            },
+                            {
+                                "label": "TEXT",
+                                "name": "TEXT",
+                                "value": "TEXT"
+                            }
+                        ],
+                        "value": "URL"
+                    }
+                ],
+                "operator_type": "map",
+                "inputs": [
+                    {
+                        "type_name": "str",
+                        "type_cls": "builtins.str",
+                        "label": "knowledge datasource",
+                        "name": "knowledge datasource",
+                        "description": "knowledge datasource, which can be a document, url, or text.",
+                        "is_list": false
+                    }
+                ],
+                "outputs": [
+                    {
+                        "type_name": "Knowledge",
+                        "type_cls": "dbgpt.rag.knowledge.base.Knowledge",
+                        "label": "Knowledge",
+                        "name": "Knowledge",
+                        "description": "Knowledge object.",
+                        "is_list": false
+                    }
+                ],
+                "version": "v1",
+                "type_name": "KnowledgeOperator",
+                "type_cls": "dbgpt.rag.operators.knowledge.KnowledgeOperator"
+            },
+            "position_absolute": {
+                "x": 586.1229236298417,
+                "y": 177.95954719156992,
+                "zoom": 0.0
+            }
+        },
+        {
+            "width": 288,
+            "height": 297,
+            "id": "operator_embedding_assembler_operator___$$___rag___$$___v1_0",
+            "position": {
+                "x": 1025.5413979832992,
+                "y": 400.08086336678537,
+                "zoom": 0.0
+            },
+            "type": "customNode",
+            "data": {
+                "label": "Embedding Assembler Operator",
+                "name": "embedding_assembler_operator",
+                "description": "Load knowledge and assemble embedding chunks to vector store.",
+                "category": "rag",
+                "category_label": "RAG",
+                "flow_type": "operator",
+                "icon": null,
+                "documentation_url": null,
+                "id": "operator_embedding_assembler_operator___$$___rag___$$___v1_0",
+                "tags": null,
+                "parameters": [
+                    {
+                        "type_name": "VectorStoreConnector",
+                        "type_cls": "dbgpt.storage.vector_store.connector.VectorStoreConnector",
+                        "label": "Vector Store Connector",
+                        "name": "vector_store_connector",
+                        "is_list": false,
+                        "category": "resource",
+                        "resource_type": "instance",
+                        "optional": false,
+                        "default": null,
+                        "placeholder": null,
+                        "description": "The vector store connector.",
+                        "options": null,
+                        "value": "resource_dbgpt.storage.vector_store.connector.VectorStoreConnector_0"
+                    },
+                    {
+                        "type_name": "ChunkParameters",
+                        "type_cls": "dbgpt.rag.chunk_manager.ChunkParameters",
+                        "label": "Chunk Parameters",
+                        "name": "chunk_parameters",
+                        "is_list": false,
+                        "category": "resource",
+                        "resource_type": "instance",
+                        "optional": true,
+                        "default": null,
+                        "placeholder": null,
+                        "description": "The chunk parameters.",
+                        "options": null,
+                        "value": "resource_dbgpt.rag.chunk_manager.ChunkParameters_0"
+                    }
+                ],
+                "operator_type": "map",
+                "inputs": [
+                    {
+                        "type_name": "Knowledge",
+                        "type_cls": "dbgpt.rag.knowledge.base.Knowledge",
+                        "label": "Knowledge",
+                        "name": "knowledge",
+                        "description": "The knowledge to be loaded.",
+                        "is_list": false
+                    }
+                ],
+                "outputs": [
+                    {
+                        "type_name": "Chunk",
+                        "type_cls": "dbgpt.core.interface.knowledge.Chunk",
+                        "label": "Chunks",
+                        "name": "chunks",
+                        "description": "The assembled chunks, it has been persisted to vector store.",
+                        "is_list": true
+                    }
+                ],
+                "version": "v1",
+                "type_name": "EmbeddingAssemblerOperator",
+                "type_cls": "dbgpt.rag.operators.embedding.EmbeddingAssemblerOperator"
+            },
+            "position_absolute": {
+                "x": 1025.5413979832992,
+                "y": 400.08086336678537,
+                "zoom": 0.0
+            }
+        },
+        {
+            "width": 288,
+            "height": 564,
+            "id": "resource_dbgpt.rag.chunk_manager.ChunkParameters_0",
+            "position": {
+                "x": -102.85219597307207,
+                "y": 572.0092425857925,
+                "zoom": 0.0
+            },
+            "type": "customNode",
+            "data": {
+                "type_name": "ChunkParameters",
+                "type_cls": "dbgpt.rag.chunk_manager.ChunkParameters",
+                "label": "Chunk Parameters",
+                "name": "chunk_parameters",
+                "description": "The parameters for chunking.",
+                "category": "rag",
+                "category_label": "RAG",
+                "flow_type": "resource",
+                "icon": null,
+                "documentation_url": null,
+                "id": "resource_dbgpt.rag.chunk_manager.ChunkParameters_0",
+                "tags": null,
+                "parameters": [
+                    {
+                        "type_name": "str",
+                        "type_cls": "builtins.str",
+                        "label": "Chunk Strategy",
+                        "name": "chunk_strategy",
+                        "is_list": false,
+                        "category": "common",
+                        "resource_type": "instance",
+                        "optional": true,
+                        "default": null,
+                        "placeholder": null,
+                        "description": "chunk strategy",
+                        "options": null,
+                        "value": "CHUNK_BY_SIZE"
+                    },
+                    {
+                        "type_name": "TextSplitter",
+                        "type_cls": "dbgpt.rag.text_splitter.text_splitter.TextSplitter",
+                        "label": "Text Splitter",
+                        "name": "text_splitter",
+                        "is_list": false,
+                        "category": "resource",
+                        "resource_type": "instance",
+                        "optional": true,
+                        "default": null,
+                        "placeholder": null,
+                        "description": "Text splitter, if not set, will use the default text splitter.",
+                        "options": null,
+                        "value": null
+                    },
+                    {
+                        "type_name": "str",
+                        "type_cls": "builtins.str",
+                        "label": "Splitter Type",
+                        "name": "splitter_type",
+                        "is_list": false,
+                        "category": "common",
+                        "resource_type": "instance",
+                        "optional": true,
+                        "default": "user_define",
+                        "placeholder": null,
+                        "description": "Splitter type",
+                        "options": null,
+                        "value": null
+                    },
+                    {
+                        "type_name": "int",
+                        "type_cls": "builtins.int",
+                        "label": "Chunk Size",
+                        "name": "chunk_size",
+                        "is_list": false,
+                        "category": "common",
+                        "resource_type": "instance",
+                        "optional": true,
+                        "default": "512",
+                        "placeholder": null,
+                        "description": "Chunk size",
+                        "options": null,
+                        "value": null
+                    },
+                    {
+                        "type_name": "int",
+                        "type_cls": "builtins.int",
+                        "label": "Chunk Overlap",
+                        "name": "chunk_overlap",
+                        "is_list": false,
+                        "category": "common",
+                        "resource_type": "instance",
+                        "optional": true,
+                        "default": "50",
+                        "placeholder": null,
+                        "description": "Chunk overlap",
+                        "options": null,
+                        "value": null
+                    },
+                    {
+                        "type_name": "str",
+                        "type_cls": "builtins.str",
+                        "label": "Separator",
+                        "name": "separator",
+                        "is_list": false,
+                        "category": "common",
+                        "resource_type": "instance",
+                        "optional": true,
+                        "default": "\n",
+                        "placeholder": null,
+                        "description": "Chunk separator",
+                        "options": null,
+                        "value": "\\n"
+                    },
+                    {
+                        "type_name": "bool",
+                        "type_cls": "builtins.bool",
+                        "label": "Enable Merge",
+                        "name": "enable_merge",
+                        "is_list": false,
+                        "category": "common",
+                        "resource_type": "instance",
+                        "optional": true,
+                        "default": "False",
+                        "placeholder": null,
+                        "description": "Enable chunk merge by chunk_size.",
+                        "options": null,
+                        "value": null
+                    }
+                ],
+                "resource_type": "instance",
+                "parent_cls": [
+                    "dbgpt.rag.chunk_manager.ChunkParameters",
+                    "pydantic.main.BaseModel",
+                    "pydantic.utils.Representation"
+                ]
+            },
+            "position_absolute": {
+                "x": -102.85219597307207,
+                "y": 572.0092425857925,
+                "zoom": 0.0
+            }
+        },
+        {
+            "width": 288,
+            "height": 288,
+            "id": "operator_chunks_to_string_operator___$$___rag___$$___v1_1",
+            "position": {
+                "x": 1387.2581599363682,
+                "y": 404.5038166425268,
+                "zoom": 0.0
+            },
+            "type": "customNode",
+            "data": {
+                "label": "Chunks To String Operator",
+                "name": "chunks_to_string_operator",
+                "description": "Convert chunks to string.",
+                "category": "rag",
+                "category_label": "RAG",
+                "flow_type": "operator",
+                "icon": null,
+                "documentation_url": null,
+                "id": "operator_chunks_to_string_operator___$$___rag___$$___v1_1",
+                "tags": null,
+                "parameters": [
+                    {
+                        "type_name": "str",
+                        "type_cls": "builtins.str",
+                        "label": "Separator",
+                        "name": "separator",
+                        "is_list": false,
+                        "category": "common",
+                        "resource_type": "instance",
+                        "optional": true,
+                        "default": "\n",
+                        "placeholder": null,
+                        "description": "The separator between chunks.",
+                        "options": null,
+                        "value": null
+                    }
+                ],
+                "operator_type": "map",
+                "inputs": [
+                    {
+                        "type_name": "Chunk",
+                        "type_cls": "dbgpt.core.interface.knowledge.Chunk",
+                        "label": "Chunks",
+                        "name": "chunks",
+                        "description": "The input chunks.",
+                        "is_list": true
+                    }
+                ],
+                "outputs": [
+                    {
+                        "type_name": "str",
+                        "type_cls": "builtins.str",
+                        "label": "String",
+                        "name": "string",
+                        "description": "The output string.",
+                        "is_list": false
+                    }
+                ],
+                "version": "v1",
+                "type_name": "ChunksToStringOperator",
+                "type_cls": "dbgpt.rag.operators.knowledge.ChunksToStringOperator"
+            },
+            "position_absolute": {
+                "x": 1387.2581599363682,
+                "y": 404.5038166425268,
+                "zoom": 0.0
+            }
+        },
+        {
+            "width": 288,
+            "height": 405,
+            "id": "operator_history_prompt_builder_operator___$$___conversion___$$___v1_0",
+            "position": {
+                "x": 2518.921348220702,
+                "y": 1039.8961472101983,
+                "zoom": 0.0
+            },
+            "type": "customNode",
+            "data": {
+                "label": "History Prompt Builder Operator",
+                "name": "history_prompt_builder_operator",
+                "description": "Build messages from prompt template and chat history.",
+                "category": "conversion",
+                "category_label": "Conversion",
+                "flow_type": "operator",
+                "icon": null,
+                "documentation_url": null,
+                "id": "operator_history_prompt_builder_operator___$$___conversion___$$___v1_0",
+                "tags": null,
+                "parameters": [
+                    {
+                        "type_name": "ChatPromptTemplate",
+                        "type_cls": "dbgpt.core.interface.prompt.ChatPromptTemplate",
+                        "label": "Chat Prompt Template",
+                        "name": "prompt",
+                        "is_list": false,
+                        "category": "resource",
+                        "resource_type": "instance",
+                        "optional": false,
+                        "default": null,
+                        "placeholder": null,
+                        "description": "The chat prompt template.",
+                        "options": null,
+                        "value": "resource_dbgpt.core.interface.operators.prompt_operator.CommonChatPromptTemplate_0"
+                    },
+                    {
+                        "type_name": "str",
+                        "type_cls": "builtins.str",
+                        "label": "History Key",
+                        "name": "history_key",
+                        "is_list": false,
+                        "category": "common",
+                        "resource_type": "instance",
+                        "optional": true,
+                        "default": "chat_history",
+                        "placeholder": null,
+                        "description": "The key of history in prompt dict.",
+                        "options": null,
+                        "value": null
+                    },
+                    {
+                        "type_name": "bool",
+                        "type_cls": "builtins.bool",
+                        "label": "String History",
+                        "name": "str_history",
+                        "is_list": false,
+                        "category": "common",
+                        "resource_type": "instance",
+                        "optional": true,
+                        "default": "False",
+                        "placeholder": null,
+                        "description": "Whether to convert the history to string.",
+                        "options": null,
+                        "value": null
+                    }
+                ],
+                "operator_type": "join",
+                "inputs": [
+                    {
+                        "type_name": "BaseMessage",
+                        "type_cls": "dbgpt.core.interface.message.BaseMessage",
+                        "label": "History",
+                        "name": "history",
+                        "description": "The history.",
+                        "is_list": true
+                    },
+                    {
+                        "type_name": "dict",
+                        "type_cls": "builtins.dict",
+                        "label": "Prompt Input Dict",
+                        "name": "prompt_input_dict",
+                        "description": "The prompt dict.",
+                        "is_list": false
+                    }
+                ],
+                "outputs": [
+                    {
+                        "type_name": "ModelMessage",
+                        "type_cls": "dbgpt.core.interface.message.ModelMessage",
+                        "label": "Formatted Messages",
+                        "name": "formatted_messages",
+                        "description": "The formatted messages.",
+                        "is_list": true
+                    }
+                ],
+                "version": "v1",
+                "type_name": "HistoryPromptBuilderOperator",
+                "type_cls": "dbgpt.core.interface.operators.prompt_operator.HistoryPromptBuilderOperator"
+            },
+            "position_absolute": {
+                "x": 2518.921348220702,
+                "y": 1039.8961472101983,
+                "zoom": 0.0
+            }
+        },
+        {
+            "width": 288,
+            "height": 296,
+            "id": "operator_chat_history_load_operator___$$___conversion___$$___v1_0",
+            "position": {
+                "x": 2251.6465218301196,
+                "y": 148.35008033939755,
+                "zoom": 0.0
+            },
+            "type": "customNode",
+            "data": {
+                "label": "Chat History Load Operator",
+                "name": "chat_history_load_operator",
+                "description": "The operator to load chat history from storage.",
+                "category": "conversion",
+                "category_label": "Conversion",
+                "flow_type": "operator",
+                "icon": null,
+                "documentation_url": null,
+                "id": "operator_chat_history_load_operator___$$___conversion___$$___v1_0",
+                "tags": null,
+                "parameters": [
+                    {
+                        "type_name": "StorageInterface",
+                        "type_cls": "dbgpt.core.interface.storage.StorageInterface",
+                        "label": "Conversation Storage",
+                        "name": "storage",
+                        "is_list": false,
+                        "category": "resource",
+                        "resource_type": "instance",
+                        "optional": true,
+                        "default": null,
+                        "placeholder": null,
+                        "description": "The conversation storage, store the conversation items(Not include message items). If None, we will use InMemoryStorage.",
+                        "options": null,
+                        "value": null
+                    },
+                    {
+                        "type_name": "StorageInterface",
+                        "type_cls": "dbgpt.core.interface.storage.StorageInterface",
+                        "label": "Message Storage",
+                        "name": "message_storage",
+                        "is_list": false,
+                        "category": "resource",
+                        "resource_type": "instance",
+                        "optional": true,
+                        "default": null,
+                        "placeholder": null,
+                        "description": "The message storage, store the messages of one conversation. If None, we will use InMemoryStorage.",
+                        "options": null,
+                        "value": null
+                    }
+                ],
+                "operator_type": "map",
+                "inputs": [
+                    {
+                        "type_name": "ModelRequest",
+                        "type_cls": "dbgpt.core.interface.llm.ModelRequest",
+                        "label": "Model Request",
+                        "name": "input_value",
+                        "description": "The model request.",
+                        "is_list": false
+                    }
+                ],
+                "outputs": [
+                    {
+                        "type_name": "BaseMessage",
+                        "type_cls": "dbgpt.core.interface.message.BaseMessage",
+                        "label": "Stored Messages",
+                        "name": "output_value",
+                        "description": "The messages stored in the storage.",
+                        "is_list": true
+                    }
+                ],
+                "version": "v1",
+                "type_name": "ServePreChatHistoryLoadOperator",
+                "type_cls": "dbgpt.serve.conversation.operators.ServePreChatHistoryLoadOperator"
+            },
+            "position_absolute": {
+                "x": 2251.6465218301196,
+                "y": 148.35008033939755,
+                "zoom": 0.0
+            }
+        }
+    ],
+    "edges": [
+        {
+            "source": "resource_dbgpt.storage.vector_store.connector.VectorStoreConnector_0",
+            "source_order": 0,
+            "target": "operator_embedding_retriever_operator___$$___rag___$$___v1_0",
+            "target_order": 0,
+            "id": "resource_dbgpt.storage.vector_store.connector.VectorStoreConnector_0|operator_embedding_retriever_operator___$$___rag___$$___v1_0",
+            "source_handle": "resource_dbgpt.storage.vector_store.connector.VectorStoreConnector_0|outputs|0",
+            "target_handle": "operator_embedding_retriever_operator___$$___rag___$$___v1_0|parameters|0",
+            "type": "buttonedge"
+        },
+        {
+            "source": "resource_dbgpt.storage.vector_store.chroma_store.ChromaVectorConfig_0",
+            "source_order": 0,
+            "target": "resource_dbgpt.storage.vector_store.connector.VectorStoreConnector_0",
+            "target_order": 1,
+            "id": "resource_dbgpt.storage.vector_store.chroma_store.ChromaVectorConfig_0|resource_dbgpt.storage.vector_store.connector.VectorStoreConnector_0",
+            "source_handle": "resource_dbgpt.storage.vector_store.chroma_store.ChromaVectorConfig_0|outputs|0",
+            "target_handle": "resource_dbgpt.storage.vector_store.connector.VectorStoreConnector_0|parameters|1",
+            "type": "buttonedge"
+        },
+        {
+            "source": "resource_dbgpt.rag.embedding.embedding_factory.DefaultEmbeddings_0",
+            "source_order": 0,
+            "target": "resource_dbgpt.storage.vector_store.chroma_store.ChromaVectorConfig_0",
+            "target_order": 3,
+            "id": "resource_dbgpt.rag.embedding.embedding_factory.DefaultEmbeddings_0|resource_dbgpt.storage.vector_store.chroma_store.ChromaVectorConfig_0",
+            "source_handle": "resource_dbgpt.rag.embedding.embedding_factory.DefaultEmbeddings_0|outputs|0",
+            "target_handle": "resource_dbgpt.storage.vector_store.chroma_store.ChromaVectorConfig_0|parameters|3",
+            "type": "buttonedge"
+        },
+        {
+            "source": "operator_common_llm_http_trigger___$$___trigger___$$___v1_0",
+            "source_order": 0,
+            "target": "operator_request_body_to_str__parsed_operator___$$___common___$$___v1_0",
+            "target_order": 0,
+            "id": "operator_common_llm_http_trigger___$$___trigger___$$___v1_0|operator_request_body_to_str__parsed_operator___$$___common___$$___v1_0",
+            "source_handle": "operator_common_llm_http_trigger___$$___trigger___$$___v1_0|outputs|0",
+            "target_handle": "operator_request_body_to_str__parsed_operator___$$___common___$$___v1_0|inputs|0",
+            "type": "buttonedge"
+        },
+        {
+            "source": "operator_embedding_retriever_operator___$$___rag___$$___v1_0",
+            "source_order": 0,
+            "target": "operator_chunks_to_string_operator___$$___rag___$$___v1_0",
+            "target_order": 0,
+            "id": "operator_embedding_retriever_operator___$$___rag___$$___v1_0|operator_chunks_to_string_operator___$$___rag___$$___v1_0",
+            "source_handle": "operator_embedding_retriever_operator___$$___rag___$$___v1_0|outputs|0",
+            "target_handle": "operator_chunks_to_string_operator___$$___rag___$$___v1_0|inputs|0",
+            "type": "buttonedge"
+        },
+        {
+            "source": "operator_chunks_to_string_operator___$$___rag___$$___v1_0",
+            "source_order": 0,
+            "target": "operator_merge_string_to_dict_operator___$$___common___$$___v1_0",
+            "target_order": 1,
+            "id": "operator_chunks_to_string_operator___$$___rag___$$___v1_0|operator_merge_string_to_dict_operator___$$___common___$$___v1_0",
+            "source_handle": "operator_chunks_to_string_operator___$$___rag___$$___v1_0|outputs|0",
+            "target_handle": "operator_merge_string_to_dict_operator___$$___common___$$___v1_0|inputs|1",
+            "type": "buttonedge"
+        },
+        {
+            "source": "operator_request_body_to_str__parsed_operator___$$___common___$$___v1_0",
+            "source_order": 0,
+            "target": "operator_merge_string_to_dict_operator___$$___common___$$___v1_0",
+            "target_order": 0,
+            "id": "operator_request_body_to_str__parsed_operator___$$___common___$$___v1_0|operator_merge_string_to_dict_operator___$$___common___$$___v1_0",
+            "source_handle": "operator_request_body_to_str__parsed_operator___$$___common___$$___v1_0|outputs|0",
+            "target_handle": "operator_merge_string_to_dict_operator___$$___common___$$___v1_0|inputs|0",
+            "type": "buttonedge"
+        },
+        {
+            "source": "operator_common_llm_http_trigger___$$___trigger___$$___v1_0",
+            "source_order": 0,
+            "target": "operator_request_builder_operator___$$___common___$$___v1_0",
+            "target_order": 0,
+            "id": "operator_common_llm_http_trigger___$$___trigger___$$___v1_0|operator_request_builder_operator___$$___common___$$___v1_0",
+            "source_handle": "operator_common_llm_http_trigger___$$___trigger___$$___v1_0|outputs|0",
+            "target_handle": "operator_request_builder_operator___$$___common___$$___v1_0|inputs|0",
+            "type": "buttonedge"
+        },
+        {
+            "source": "operator_request_builder_operator___$$___common___$$___v1_0",
+            "source_order": 0,
+            "target": "operator_merged_request_builder_operator___$$___common___$$___v1_0",
+            "target_order": 0,
+            "id": "operator_request_builder_operator___$$___common___$$___v1_0|operator_merged_request_builder_operator___$$___common___$$___v1_0",
+            "source_handle": "operator_request_builder_operator___$$___common___$$___v1_0|outputs|0",
+            "target_handle": "operator_merged_request_builder_operator___$$___common___$$___v1_0|inputs|0",
+            "type": "buttonedge"
+        },
+        {
+            "source": "operator_merged_request_builder_operator___$$___common___$$___v1_0",
+            "source_order": 0,
+            "target": "operator_streaming_llm_operator___$$___llm___$$___v1_0",
+            "target_order": 0,
+            "id": "operator_merged_request_builder_operator___$$___common___$$___v1_0|operator_streaming_llm_operator___$$___llm___$$___v1_0",
+            "source_handle": "operator_merged_request_builder_operator___$$___common___$$___v1_0|outputs|0",
+            "target_handle": "operator_streaming_llm_operator___$$___llm___$$___v1_0|inputs|0",
+            "type": "buttonedge"
+        },
+        {
+            "source": "resource_dbgpt.model.cluster.client.DefaultLLMClient_0",
+            "source_order": 0,
+            "target": "operator_streaming_llm_operator___$$___llm___$$___v1_0",
+            "target_order": 0,
+            "id": "resource_dbgpt.model.cluster.client.DefaultLLMClient_0|operator_streaming_llm_operator___$$___llm___$$___v1_0",
+            "source_handle": "resource_dbgpt.model.cluster.client.DefaultLLMClient_0|outputs|0",
+            "target_handle": "operator_streaming_llm_operator___$$___llm___$$___v1_0|parameters|0",
+            "type": "buttonedge"
+        },
+        {
+            "source": "operator_streaming_llm_operator___$$___llm___$$___v1_0",
+            "source_order": 0,
+            "target": "operator_openai_streaming_output_operator___$$___output_parser___$$___v1_0",
+            "target_order": 0,
+            "id": "operator_streaming_llm_operator___$$___llm___$$___v1_0|operator_openai_streaming_output_operator___$$___output_parser___$$___v1_0",
+            "source_handle": "operator_streaming_llm_operator___$$___llm___$$___v1_0|outputs|0",
+            "target_handle": "operator_openai_streaming_output_operator___$$___output_parser___$$___v1_0|inputs|0",
+            "type": "buttonedge"
+        },
+        {
+            "source": "operator_request_body_to_str__parsed_operator___$$___common___$$___v1_0",
+            "source_order": 0,
+            "target": "operator_knowledge_operator___$$___rag___$$___v1_0",
+            "target_order": 0,
+            "id": "operator_request_body_to_str__parsed_operator___$$___common___$$___v1_0|operator_knowledge_operator___$$___rag___$$___v1_0",
+            "source_handle": "operator_request_body_to_str__parsed_operator___$$___common___$$___v1_0|outputs|0",
+            "target_handle": "operator_knowledge_operator___$$___rag___$$___v1_0|inputs|0",
+            "type": "buttonedge"
+        },
+        {
+            "source": "operator_knowledge_operator___$$___rag___$$___v1_0",
+            "source_order": 0,
+            "target": "operator_embedding_assembler_operator___$$___rag___$$___v1_0",
+            "target_order": 0,
+            "id": "operator_knowledge_operator___$$___rag___$$___v1_0|operator_embedding_assembler_operator___$$___rag___$$___v1_0",
+            "source_handle": "operator_knowledge_operator___$$___rag___$$___v1_0|outputs|0",
+            "target_handle": "operator_embedding_assembler_operator___$$___rag___$$___v1_0|inputs|0",
+            "type": "buttonedge"
+        },
+        {
+            "source": "resource_dbgpt.storage.vector_store.connector.VectorStoreConnector_0",
+            "source_order": 0,
+            "target": "operator_embedding_assembler_operator___$$___rag___$$___v1_0",
+            "target_order": 0,
+            "id": "resource_dbgpt.storage.vector_store.connector.VectorStoreConnector_0|operator_embedding_assembler_operator___$$___rag___$$___v1_0",
+            "source_handle": "resource_dbgpt.storage.vector_store.connector.VectorStoreConnector_0|outputs|0",
+            "target_handle": "operator_embedding_assembler_operator___$$___rag___$$___v1_0|parameters|0",
+            "type": "buttonedge"
+        },
+        {
+            "source": "resource_dbgpt.rag.chunk_manager.ChunkParameters_0",
+            "source_order": 0,
+            "target": "operator_embedding_assembler_operator___$$___rag___$$___v1_0",
+            "target_order": 1,
+            "id": "resource_dbgpt.rag.chunk_manager.ChunkParameters_0|operator_embedding_assembler_operator___$$___rag___$$___v1_0",
+            "source_handle": "resource_dbgpt.rag.chunk_manager.ChunkParameters_0|outputs|0",
+            "target_handle": "operator_embedding_assembler_operator___$$___rag___$$___v1_0|parameters|1",
+            "type": "buttonedge"
+        },
+        {
+            "source": "operator_embedding_assembler_operator___$$___rag___$$___v1_0",
+            "source_order": 0,
+            "target": "operator_chunks_to_string_operator___$$___rag___$$___v1_1",
+            "target_order": 0,
+            "id": "operator_embedding_assembler_operator___$$___rag___$$___v1_0|operator_chunks_to_string_operator___$$___rag___$$___v1_1",
+            "source_handle": "operator_embedding_assembler_operator___$$___rag___$$___v1_0|outputs|0",
+            "target_handle": "operator_chunks_to_string_operator___$$___rag___$$___v1_1|inputs|0",
+            "type": "buttonedge"
+        },
+        {
+            "source": "resource_dbgpt.core.interface.operators.prompt_operator.CommonChatPromptTemplate_0",
+            "source_order": 0,
+            "target": "operator_history_prompt_builder_operator___$$___conversion___$$___v1_0",
+            "target_order": 0,
+            "id": "resource_dbgpt.core.interface.operators.prompt_operator.CommonChatPromptTemplate_0|operator_history_prompt_builder_operator___$$___conversion___$$___v1_0",
+            "source_handle": "resource_dbgpt.core.interface.operators.prompt_operator.CommonChatPromptTemplate_0|outputs|0",
+            "target_handle": "operator_history_prompt_builder_operator___$$___conversion___$$___v1_0|parameters|0",
+            "type": "buttonedge"
+        },
+        {
+            "source": "operator_request_builder_operator___$$___common___$$___v1_0",
+            "source_order": 0,
+            "target": "operator_chat_history_load_operator___$$___conversion___$$___v1_0",
+            "target_order": 0,
+            "id": "operator_request_builder_operator___$$___common___$$___v1_0|operator_chat_history_load_operator___$$___conversion___$$___v1_0",
+            "source_handle": "operator_request_builder_operator___$$___common___$$___v1_0|outputs|0",
+            "target_handle": "operator_chat_history_load_operator___$$___conversion___$$___v1_0|inputs|0",
+            "type": "buttonedge"
+        },
+        {
+            "source": "operator_chat_history_load_operator___$$___conversion___$$___v1_0",
+            "source_order": 0,
+            "target": "operator_history_prompt_builder_operator___$$___conversion___$$___v1_0",
+            "target_order": 0,
+            "id": "operator_chat_history_load_operator___$$___conversion___$$___v1_0|operator_history_prompt_builder_operator___$$___conversion___$$___v1_0",
+            "source_handle": "operator_chat_history_load_operator___$$___conversion___$$___v1_0|outputs|0",
+            "target_handle": "operator_history_prompt_builder_operator___$$___conversion___$$___v1_0|inputs|0",
+            "type": "buttonedge"
+        },
+        {
+            "source": "operator_merge_string_to_dict_operator___$$___common___$$___v1_0",
+            "source_order": 0,
+            "target": "operator_history_prompt_builder_operator___$$___conversion___$$___v1_0",
+            "target_order": 1,
+            "id": "operator_merge_string_to_dict_operator___$$___common___$$___v1_0|operator_history_prompt_builder_operator___$$___conversion___$$___v1_0",
+            "source_handle": "operator_merge_string_to_dict_operator___$$___common___$$___v1_0|outputs|0",
+            "target_handle": "operator_history_prompt_builder_operator___$$___conversion___$$___v1_0|inputs|1",
+            "type": "buttonedge"
+        },
+        {
+            "source": "operator_request_body_to_str__parsed_operator___$$___common___$$___v1_0",
+            "source_order": 0,
+            "target": "operator_embedding_retriever_operator___$$___rag___$$___v1_0",
+            "target_order": 0,
+            "id": "operator_request_body_to_str__parsed_operator___$$___common___$$___v1_0|operator_embedding_retriever_operator___$$___rag___$$___v1_0",
+            "source_handle": "operator_request_body_to_str__parsed_operator___$$___common___$$___v1_0|outputs|0",
+            "target_handle": "operator_embedding_retriever_operator___$$___rag___$$___v1_0|inputs|0",
+            "type": "buttonedge"
+        },
+        {
+            "source": "operator_history_prompt_builder_operator___$$___conversion___$$___v1_0",
+            "source_order": 0,
+            "target": "operator_merged_request_builder_operator___$$___common___$$___v1_0",
+            "target_order": 1,
+            "id": "operator_history_prompt_builder_operator___$$___conversion___$$___v1_0|operator_merged_request_builder_operator___$$___common___$$___v1_0",
+            "source_handle": "operator_history_prompt_builder_operator___$$___conversion___$$___v1_0|outputs|0",
+            "target_handle": "operator_merged_request_builder_operator___$$___common___$$___v1_0|inputs|1",
+            "type": "buttonedge"
+        }
+    ],
+    "viewport": {
+        "x": 319.55199324015587,
+        "y": 493.6397266326245,
+        "zoom": 0.23127310562344786
+    }
+}

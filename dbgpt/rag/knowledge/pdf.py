@@ -78,6 +78,7 @@ class PDFKnowledge(Knowledge):
             ChunkStrategy.CHUNK_BY_SIZE,
             ChunkStrategy.CHUNK_BY_PAGE,
             ChunkStrategy.CHUNK_BY_SEPARATOR,
+            ChunkStrategy.CHUNK_BY_PARAGRAPH # add new support chunk type
         ]
 
     @classmethod

@@ -138,7 +138,29 @@ class DefaultEmbeddingFactory(EmbeddingFactory):
             timeout=timeout,
             **kwargs,
         )
+    
+    @classmethod
+    def call_embeddings_model_from_huggingface(
+        cls,
+        model_name: str
+    ) -> Embeddings:
+        """call embedding model from huggingface
+        
+        It will copy langchain work with huggingface to call embedding model
 
+        ArgsL
+            model_name (str): The model name.
+        Returns:
+            Embeddings: The embeddings instance
+        """
+        from langchain.embeddings.huggingface import HuggingFaceBgeEmbeddings
+        embeddings = HuggingFaceBgeEmbeddings(
+            model_name=model_name,
+            model_kwargs={'device': 'cpu'},
+            encode_kwargs = {'normalize_embeddings': True}
+        )
+        return embeddings
+    
     @classmethod
     def default(
         cls, model_name: str, model_path: Optional[str] = None, **kwargs: Any

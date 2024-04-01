@@ -215,7 +215,7 @@ def _create_mysql_database(db_name: str, db_url: str, try_to_create_db: bool = F
 @dataclass
 class WebServerParameters(BaseParameters):
     host: Optional[str] = field(
-        default="0.0.0.0", metadata={"help": "Webserver deploy host"}
+        default="127.0.0.1", metadata={"help": "Webserver deploy host"}
     )
     port: Optional[int] = field(
         default=5000, metadata={"help": "Webserver deploy port"}
