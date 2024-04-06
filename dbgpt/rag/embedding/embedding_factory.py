@@ -214,7 +214,6 @@ class DefaultEmbeddingFactory(EmbeddingFactory):
             **kwargs,
         )
 
-
 class WrappedEmbeddingFactory(EmbeddingFactory):
     """The default embedding factory."""
 

@@ -42,7 +42,7 @@ class TemplateOfCommonOperator(object):
             return join_task
 
 
-
+    
 
 
 def branch_1(x: int) -> bool:
