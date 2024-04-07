@@ -1,3 +1,7 @@
+import os, sys
+python_path = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
+sys.path.insert(0, python_path)
+
 import argparse
 import os
 import sys
@@ -35,6 +39,7 @@ from dbgpt.util.utils import (
     setup_http_service_logging,
     setup_logging,
 )
+
 
 ROOT_PATH = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 sys.path.append(ROOT_PATH)
