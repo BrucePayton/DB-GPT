@@ -876,60 +876,6 @@ class ViewMetadata(BaseMetadata):
         return f"{name}{split_str}{category}{split_str}{version}"
 
 
-class ViewMixin(ABC):
-    """The mixin of the operator."""
-
-    metadata: Optional[ViewMetadata] = None
-
-    def get_view_metadata(self) -> Optional[ViewMetadata]:
-        """Get the view metadata.
-
-        Returns:
-            Optional[ViewMetadata]: The view metadata.
-        """
-        return self.metadata
-
-    @classmethod
-    def after_define(cls):
-        """After define the operator, register the operator."""
-        _register_operator(cls)
-
-    def to_dict(self) -> Dict:
-        """Convert current metadata to json.
-
-        Show the metadata in UI.
-
-        Returns:
-            Dict: The metadata dict.
-
-        Raises:
-            ValueError: If the metadata is not set.
-        """
-        metadata = self.get_view_metadata()
-        if not metadata:
-            raise ValueError("Metadata is not set.")
-        metadata_dict = metadata.to_dict()
-        return metadata_dict
-
-    @classmethod
-    def build_from(
-        cls: Type[T],
-        view_metadata: ViewMetadata,
-        key_to_resource: Optional[Dict[str, "ResourceMetadata"]] = None,
-    ) -> T:
-        """Build the operator from the metadata."""
-        operator_key = view_metadata.get_operator_key()
-        operator_cls: Type[T] = _get_operator_class(operator_key)
-        metadata = operator_cls.metadata
-        if not metadata:
-            raise ValueError("Metadata is not set.")
-        runnable_params = metadata.get_runnable_parameters(
-            view_metadata.parameters, key_to_resource
-        )
-        operator_task: T = operator_cls(**runnable_params)
-        return operator_task
-
-
 @dataclasses.dataclass
 class _RegistryItem:
     """The registry item."""
@@ -999,3 +945,58 @@ def _get_resource_class(type_key: str) -> _RegistryItem:
 def _register_resource(cls: Type, resource_metadata: ResourceMetadata):
     """Register the operator."""
     _OPERATOR_REGISTRY.register_flow(cls, resource_metadata)
+
+
+class ViewMixin(ABC):
+    """The mixin of the operator."""
+
+    metadata: Optional[ViewMetadata] = None
+
+    def get_view_metadata(self) -> Optional[ViewMetadata]:
+        """Get the view metadata.
+
+        Returns:
+            Optional[ViewMetadata]: The view metadata.
+        """
+        return self.metadata
+
+    @classmethod
+    def after_define(cls):
+        """After define the operator, register the operator."""
+        _register_operator(cls)
+
+    def to_dict(self) -> Dict:
+        """Convert current metadata to json.
+
+        Show the metadata in UI.
+
+        Returns:
+            Dict: The metadata dict.
+
+        Raises:
+            ValueError: If the metadata is not set.
+        """
+        metadata = self.get_view_metadata()
+        if not metadata:
+            raise ValueError("Metadata is not set.")
+        metadata_dict = metadata.to_dict()
+        return metadata_dict
+
+    @classmethod
+    def build_from(
+        cls: Type[T],
+        view_metadata: ViewMetadata,
+        key_to_resource: Optional[Dict[str, "ResourceMetadata"]] = None,
+    ) -> T:
+        """Build the operator from the metadata."""
+        operator_key = view_metadata.get_operator_key()
+        operator_cls: Type[T] = _get_operator_class(operator_key)
+        metadata = operator_cls.metadata
+        if not metadata:
+            raise ValueError("Metadata is not set.")
+        runnable_params = metadata.get_runnable_parameters(
+            view_metadata.parameters, key_to_resource
+        )
+        operator_task: T = operator_cls(**runnable_params)
+        return operator_task
+
